@@ -5,7 +5,7 @@ import Link from "next/link";
 import { Session } from "next-auth";
 import { useEffect } from "react";
 
-import { login, logout } from "@/lib/auth.actions";
+import { login, logout } from "@/lib/actions/auth";
 
 import Icon from "./Icon";
 import Logo from "./Logo";
