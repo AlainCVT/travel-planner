@@ -6,6 +6,7 @@ import { Geist, Geist_Mono, Inter } from "next/font/google";
 
 import { auth } from "@/auth";
 import Navbar from "@/components/Navbar";
+import { LocaleProvider } from "@/contexts/locale";
 import { cn } from "@/lib/utils";
 
 const geistHeading = Geist({ subsets: ["latin"], variable: "--font-heading" });
@@ -33,8 +34,10 @@ export default async function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html lang="en" className={cn("font-sans", inter.variable, geistHeading.variable)}>
       <body className={clsx(geistSans.variable, geistMono.variable, "antialiased")}>
-        <Navbar session={session} />
-        {children}
+        <LocaleProvider>
+          <Navbar session={session} />
+          {children}
+        </LocaleProvider>
       </body>
     </html>
   );

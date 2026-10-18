@@ -1,34 +1,18 @@
 "use client";
 
 import Link from "next/link";
-import { useSyncExternalStore } from "react";
 
 import type { Trip } from "@/app/generated/prisma/client";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { useLocale } from "@/contexts/locale";
 
 type Props = {
   trips: Trip[];
 };
 
-const subscribeToLanguage = (callback: () => void) => {
-  window.addEventListener("languagechange", callback);
-  return () => window.removeEventListener("languagechange", callback);
-};
-
-const getBrowserLanguage = () => navigator.language;
-
-const formatDate = (date: Date, locale: string | null) => {
-  const d = new Date(date);
-  return locale ? d.toLocaleDateString(locale, { timeZone: "UTC" }) : d.toISOString().slice(0, 10);
-};
-
 export default function UserTrips({ trips }: Props) {
-  const locale = useSyncExternalStore<string | null>(
-    subscribeToLanguage,
-    getBrowserLanguage,
-    () => null,
-  );
+  const { formatDate } = useLocale();
 
   const sortedTrips = [...trips].sort(
     (a, b) => new Date(b.startDate).getTime() - new Date(a.startDate).getTime(),
@@ -60,7 +44,7 @@ export default function UserTrips({ trips }: Props) {
                 <CardContent>
                   <p className="mb-2 line-clamp-2 text-sm">{trip.description}</p>
                   <div className="text-sm">
-                    {formatDate(trip.startDate, locale)} - {formatDate(trip.endDate, locale)}
+                    {formatDate(trip.startDate)} - {formatDate(trip.endDate)}
                   </div>
                 </CardContent>
               </Card>
