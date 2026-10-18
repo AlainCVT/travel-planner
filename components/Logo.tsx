@@ -1,5 +1,5 @@
 import { clsx } from "cn";
-import { SVGProps } from "react";
+import type { SVGProps } from "react";
 
 type Props = SVGProps<SVGSVGElement> & {
   size?: SVGProps<SVGSVGElement>["width"] | SVGProps<SVGSVGElement>["height"];

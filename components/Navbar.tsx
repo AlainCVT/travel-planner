@@ -2,7 +2,7 @@
 
 import { Moon, Sun } from "lucide-react";
 import Link from "next/link";
-import { Session } from "next-auth";
+import type { Session } from "next-auth";
 import { useEffect } from "react";
 
 import { login, logout } from "@/lib/actions/auth";

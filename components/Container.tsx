@@ -1,4 +1,4 @@
-import clsx, { ClassValue } from "clsx";
+import clsx, { type ClassValue } from "clsx";
 import type { ComponentPropsWithoutRef, ElementType, PropsWithChildren } from "react";
 
 type ContainerProps<T extends ElementType = "div"> = PropsWithChildren<{

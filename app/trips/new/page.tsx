@@ -2,7 +2,7 @@
 
 import { Loader2, Trash } from "lucide-react";
 import Image from "next/image";
-import { SubmitEvent, useState } from "react";
+import { type SubmitEvent, useState } from "react";
 
 import Container from "@/components/Container";
 import DateField from "@/components/forms/DateField";
@@ -11,7 +11,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Field, FieldLabel } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { createTrip, CreateTripErrors } from "@/lib/actions/create-trip";
+import { createTrip, type CreateTripErrors } from "@/lib/actions/create-trip";
 import { deleteImage } from "@/lib/actions/delete-image";
 import { UploadDropzone } from "@/lib/uploadthing";
 

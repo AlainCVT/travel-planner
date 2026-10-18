@@ -3,13 +3,13 @@
 import { format } from "date-fns";
 import {
   type ComponentProps,
-  Dispatch,
+  type Dispatch,
   type ReactElement,
-  SetStateAction,
+  type SetStateAction,
   useId,
   useState,
 } from "react";
-import { DayPicker } from "react-day-picker";
+import type { DayPicker } from "react-day-picker";
 
 import { Button } from "@/components/ui/button";
 import { Calendar } from "@/components/ui/calendar";
