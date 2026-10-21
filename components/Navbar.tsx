@@ -23,8 +23,8 @@ export default function Navbar({ session }: { session: Session | null }) {
   }
 
   return (
-    <header className="sticky top-4 container mx-auto my-4 px-2">
-      <nav className="flex items-center justify-between rounded-lg border bg-background/40 px-2 py-2 backdrop-blur-sm lg:px-4">
+    <header className="sticky top-4 z-100 container mx-auto my-4 px-2">
+      <nav className="flex items-center justify-between rounded-lg border bg-background/80 px-2 py-2 backdrop-blur-sm lg:px-4">
         <Link href="/" className="flex h-9 items-center rounded-md">
           <Logo width={24} height={24} />
           <span className="px-2 text-lg font-bold">Travel Planner</span>
@@ -32,8 +32,12 @@ export default function Navbar({ session }: { session: Session | null }) {
         <div className="flex items-center space-x-3">
           {session ? (
             <>
-              <Button variant="ghost">Trips</Button>
-              <Button variant="ghost">Globe</Button>
+              <Button asChild variant="ghost">
+                <Link href="/trips">Trips</Link>
+              </Button>
+              <Button variant="ghost" disabled>
+                Globe
+              </Button>
               <Button onClick={logout}>Sign out</Button>
             </>
           ) : (

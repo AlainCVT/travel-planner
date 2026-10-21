@@ -7,6 +7,7 @@ import UserTrips from "@/components/layouts/UserTrips";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { prisma } from "@/lib/prisma";
+import { pluralize } from "@/utils/string";
 
 export default async function TripsPage() {
   const session = await auth();
@@ -44,8 +45,8 @@ export default async function TripsPage() {
               <>Start planning your first trip.</>
             ) : (
               <>
-                You have {trips.length} {trips.length === 1 ? "trip" : "trips"} planned.{" "}
-                {upcomingTrips.length} upcoming.
+                You have {pluralize.withCount(trips.length, "trip")} planned including upcoming{" "}
+                {pluralize.withCount(upcomingTrips.length, "trip")}.
               </>
             )}
           </p>
