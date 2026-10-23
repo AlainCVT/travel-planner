@@ -23,9 +23,9 @@ export default function UserTrips({ trips }: Props) {
       <h2 className="text-xl font-semibold">Your Recent Trips</h2>
       {trips.length === 0 ? (
         <Card>
-          <CardContent className="flex flex-col items-center justify-center py-8">
-            <h3 className="mb-2 text-xl font-medium"> No trips yet.</h3>
-            <p className="mb-4 max-w-md text-center">
+          <CardContent className="flex flex-col items-center justify-center gap-2 py-8">
+            <h3 className="text-xl font-medium"> No trips yet.</h3>
+            <p className="mb-2 max-w-md text-center">
               Start planning your adventure by creating your first trip.
             </p>
             <Button asChild>
@@ -41,8 +41,8 @@ export default function UserTrips({ trips }: Props) {
                 <CardHeader>
                   <CardTitle className="line-clamp-1 font-semibold">{trip.title}</CardTitle>
                 </CardHeader>
-                <CardContent>
-                  <p className="mb-2 line-clamp-2 text-sm">{trip.description}</p>
+                <CardContent className="grid gap-2">
+                  <p className="line-clamp-2 text-sm">{trip.description}</p>
                   <div className="text-sm">
                     {formatDate(trip.startDate)} - {formatDate(trip.endDate)}
                   </div>

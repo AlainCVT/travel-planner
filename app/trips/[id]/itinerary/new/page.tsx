@@ -1,0 +1,11 @@
+import NewLocation from "@/components/layouts/NewLocation";
+
+export default async function TripsIDItineraryNewPage({
+  params,
+}: {
+  params: Promise<{ id: string }>;
+}) {
+  const { id } = await params;
+
+  return <NewLocation id={id} />;
+}
