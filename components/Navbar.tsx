@@ -23,11 +23,11 @@ export default function Navbar({ session }: { session: Session | null }) {
   }
 
   return (
-    <header className="sticky top-4 z-100 container mx-auto my-4 px-2">
-      <nav className="flex items-center justify-between rounded-lg border bg-background/80 px-2 py-2 backdrop-blur-sm lg:px-4">
+    <header className="pointer-events-none sticky top-0 z-100 container mx-auto px-2 py-4">
+      <nav className="pointer-events-auto flex items-center justify-between rounded-lg border bg-background/80 px-2 py-2 backdrop-blur-sm lg:px-4">
         <Link href="/" className="flex h-9 items-center rounded-md">
           <Logo width={24} height={24} />
-          <span className="px-2 text-lg font-bold">Travel Planner</span>
+          <span className="px-2 text-lg font-bold whitespace-nowrap">Travel Planner</span>
         </Link>
         <div className="flex items-center space-x-3">
           {session ? (
@@ -35,8 +35,8 @@ export default function Navbar({ session }: { session: Session | null }) {
               <Button asChild variant="ghost">
                 <Link href="/trips">Trips</Link>
               </Button>
-              <Button variant="ghost" disabled>
-                Globe
+              <Button asChild variant="ghost">
+                <Link href="/globe">Globe</Link>
               </Button>
               <Button onClick={logout}>Sign out</Button>
             </>

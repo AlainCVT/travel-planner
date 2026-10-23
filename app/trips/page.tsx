@@ -28,7 +28,7 @@ export default async function TripsPage() {
   const upcomingTrips = trips.filter((trip) => new Date(trip.startDate) >= today);
 
   return (
-    <Container className="space-y-6 py-8">
+    <Container className="space-y-6">
       <div className="flex items-center justify-between">
         <h1 className="text-3xl font-bold tracking-tight">Dashboard</h1>
         <Button asChild>

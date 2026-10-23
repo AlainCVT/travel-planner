@@ -45,8 +45,8 @@ export default function TripsNewPage() {
   };
 
   return (
-    <Container className="py-8">
-      <Card className="mx-auto w-lg">
+    <Container className="flex justify-center">
+      <Card className="w-full max-w-lg">
         <CardHeader>
           <CardTitle>Add a new trip</CardTitle>
         </CardHeader>
@@ -81,7 +81,7 @@ export default function TripsNewPage() {
                 </p>
               )}
             </Field>
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid gap-4 sm:grid-cols-2">
               <DateField
                 date={startDate}
                 setDate={(date) => {

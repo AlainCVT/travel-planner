@@ -70,13 +70,13 @@ export default function TripDetail({ trip }: Props) {
     Math.round((endDate.getTime() - startDate.getTime()) / (1000 * 60 * 60 * 24));
 
   return (
-    <Container className="space-y-8 pb-12">
+    <Container className="space-y-6">
       {trip.image && (
         <div className="relative h-72 w-full overflow-hidden rounded-xl md:h-96">
           <Image src={trip.image} alt={trip.title} className="object-cover" fill priority />
         </div>
       )}
-      <Card className="flex flex-col items-start justify-between gap-4 rounded-lg p-6 shadow md:flex-row md:items-center">
+      <Card className="flex flex-col items-start justify-between gap-4 rounded-lg p-6 md:flex-row md:items-center">
         <div className="grid gap-2">
           <h1 className="text-4xl font-extrabold">{trip.title}</h1>
           <div className="flex items-center gap-2 text-muted-foreground">
@@ -136,7 +136,7 @@ export default function TripDetail({ trip }: Props) {
                 </div>
               </div>
               <div>
-                <div className="h-72 w-full overflow-hidden rounded-lg bg-muted shadow">
+                <div className="h-72 bg-muted shadow">
                   <MapView itineraries={trip.locations} />
                 </div>
                 {trip.locations.length === 0 && (
@@ -174,7 +174,7 @@ export default function TripDetail({ trip }: Props) {
             )}
           </TabsContent>
           <TabsContent value="map" className="space-y-6">
-            <div className="h-144 overflow-hidden rounded-lg bg-muted shadow">
+            <div className="h-144 bg-muted shadow">
               <MapView itineraries={trip.locations} />
             </div>
             {trip.locations.length === 0 && (

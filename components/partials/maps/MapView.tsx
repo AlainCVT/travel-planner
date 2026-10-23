@@ -70,7 +70,7 @@ export default function MapView({ itineraries }: Props) {
       maxBoundsViscosity={1}
       minZoom={1}
       scrollWheelZoom={false}
-      style={{ height: "100%", width: "100%" }}
+      style={{ height: "100%", width: "100%", borderRadius: "var(--radius)" }}
       touchZoom={true}
       zoomControl={false}
     >

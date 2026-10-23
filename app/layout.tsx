@@ -33,10 +33,16 @@ export default async function RootLayout({ children }: LayoutProps<"/">) {
 
   return (
     <html lang="en" className={cn("font-sans", inter.variable, geistHeading.variable)}>
-      <body className={clsx(geistSans.variable, geistMono.variable, "antialiased")}>
+      <body
+        className={clsx(
+          geistSans.variable,
+          geistMono.variable,
+          "grid min-h-screen grid-rows-[auto_1fr] antialiased",
+        )}
+      >
         <LocaleProvider>
           <Navbar session={session} />
-          {children}
+          <div className="pt-8 pb-12">{children}</div>
         </LocaleProvider>
       </body>
     </html>
