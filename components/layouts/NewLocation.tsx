@@ -1,6 +1,6 @@
 "use client";
 
-import { config, geocoding, type GeocodingFeature } from "@maptiler/client";
+import type { GeocodingFeature } from "@maptiler/client";
 import { Loader2 } from "lucide-react";
 import { useState, useTransition } from "react";
 import { useDebouncedCallback } from "use-debounce";
@@ -17,8 +17,7 @@ import {
 } from "@/components/ui/combobox";
 import { Field, FieldLabel } from "@/components/ui/field";
 import { addLocation } from "@/lib/actions/add-location";
-
-config.apiKey = process.env.MAPTILER_KEY!;
+import { searchLocations } from "@/lib/actions/geocode";
 
 type Props = {
   id: string;
@@ -35,16 +34,15 @@ export default function NewLocation({ id }: Props) {
     if (value.length < 2) {
       return;
     }
-
-    const result = await geocoding.forward(value);
-    setSuggestions(result.features);
+    const locations = await searchLocations(value);
+    setSuggestions(locations);
   }, 500);
 
   return (
     <Container className="flex justify-center">
       <Card className="w-full max-w-md">
         <CardHeader>
-          <CardTitle className="text-xl font-bold">
+          <CardTitle className="text-xl font-semibold">
             <h1>Add New Location</h1>
           </CardTitle>
         </CardHeader>

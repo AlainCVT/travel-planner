@@ -3,8 +3,9 @@
 import { Moon, Sun } from "lucide-react";
 import Link from "next/link";
 import type { Session } from "next-auth";
-import { useEffect } from "react";
+import { useContext } from "react";
 
+import { ThemeContext } from "@/contexts/theme";
 import { login, logout } from "@/lib/actions/auth";
 
 import Icon from "./Icon";
@@ -12,15 +13,7 @@ import Logo from "./Logo";
 import { Button } from "./ui/button";
 
 export default function Navbar({ session }: { session: Session | null }) {
-  useEffect(() => {
-    const savedTheme = window.localStorage.getItem("travel-planner-theme");
-    document.documentElement.classList.toggle("dark", savedTheme === "dark");
-  }, []);
-
-  function toggleTheme() {
-    const isDark = document.documentElement.classList.toggle("dark");
-    window.localStorage.setItem("travel-planner-theme", isDark ? "dark" : "light");
-  }
+  const { toggleTheme } = useContext(ThemeContext);
 
   return (
     <header className="pointer-events-none sticky top-0 z-100 container mx-auto px-2 py-4">
@@ -51,7 +44,9 @@ export default function Navbar({ session }: { session: Session | null }) {
             title="Toggle color theme"
             variant="ghost"
             size="icon"
-            onClick={toggleTheme}
+            onClick={() => {
+              toggleTheme();
+            }}
           >
             <Sun className="hidden dark:block" />
             <Moon className="dark:hidden" />

@@ -7,6 +7,7 @@ import { Geist, Geist_Mono, Inter } from "next/font/google";
 import { auth } from "@/auth";
 import Navbar from "@/components/Navbar";
 import { LocaleProvider } from "@/contexts/locale";
+import { ThemeProvider } from "@/contexts/theme";
 import { cn } from "@/lib/utils";
 
 const geistHeading = Geist({ subsets: ["latin"], variable: "--font-heading" });
@@ -40,10 +41,12 @@ export default async function RootLayout({ children }: LayoutProps<"/">) {
           "grid min-h-screen grid-rows-[auto_1fr] antialiased",
         )}
       >
-        <LocaleProvider>
-          <Navbar session={session} />
-          <div className="pt-8 pb-12">{children}</div>
-        </LocaleProvider>
+        <ThemeProvider>
+          <LocaleProvider>
+            <Navbar session={session} />
+            <div className="pt-8 pb-12">{children}</div>
+          </LocaleProvider>
+        </ThemeProvider>
       </body>
     </html>
   );
