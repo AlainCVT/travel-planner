@@ -1,36 +1,97 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Travel Planner
 
-## Getting Started
+Travel Planner is a web application for planning and organizing trips. Create trips with dates, descriptions, and cover images; add destinations to each itinerary; and view locations on interactive maps. A personal dashboard keeps planned trips together, while a 3D globe visualizes destinations and the countries you have visited.
 
-First, run the development server:
+## Features
+
+- Sign in with GitHub.
+- Create and manage personal trips with dates, descriptions, and images.
+- Add destinations using location search and geocoding.
+- Organize itinerary locations with drag-and-drop ordering.
+- Explore trip locations on interactive maps.
+- View your destinations and visited countries on a 3D globe.
+- Browse trips in a responsive interface with light and dark themes.
+
+## Tech stack
+
+- Next.js 16 with React 19 and TypeScript
+- Auth.js with GitHub OAuth
+- PostgreSQL and Prisma
+- MapTiler geocoding, Leaflet maps, and `react-globe.gl`
+- UploadThing for trip image uploads
+- Tailwind CSS
+
+## Requirements
+
+- Node.js and pnpm
+- A PostgreSQL database
+- A GitHub OAuth application
+- API credentials for MapTiler and UploadThing
+
+## Getting started
+
+1. Install dependencies:
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+pnpm install
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+2. Create a `.env` file in the project root and configure the required environment variables:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```dotenv
+DATABASE_URL="postgresql://localhost:5432/travel_planner?schema=public"
+AUTH_SECRET="your-auth-secret"
+AUTH_GITHUB_ID="your-github-oauth-client-id"
+AUTH_GITHUB_SECRET="your-github-oauth-client-secret"
+MAPTILER_KEY="your-maptiler-api-key"
+UPLOADTHING_TOKEN="your-uploadthing-token"
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Configure your GitHub OAuth application's callback URL as
+`http://localhost:3000/api/auth/callback/github` for local development. Use the corresponding URL for your deployed application in production.
 
-## Learn More
+3. Apply the database migrations and generate the Prisma client:
 
-To learn more about Next.js, take a look at the following resources:
+```bash
+pnpm exec prisma migrate dev
+pnpm exec prisma generate
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+4. Start the development server:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```bash
+pnpm dev
+```
 
-## Deploy on Vercel
+5. Open [http://localhost:3000](http://localhost:3000).
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Available scripts
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+| Command             | Description                          |
+| ------------------- | ------------------------------------ |
+| `pnpm dev`          | Start the development server         |
+| `pnpm build`        | Build the application for production |
+| `pnpm start`        | Start the production server          |
+| `pnpm lint`         | Run ESLint                           |
+| `pnpm format:check` | Check formatting with Prettier       |
+
+## Project structure
+
+- `app/` — Next.js pages and API routes
+- `components/` — Shared UI, trip, itinerary, and map components
+- `lib/actions/` — Server actions for authentication, trips, locations, geocoding, and images
+- `prisma/` — Prisma schema and database migrations
+
+## Deployment
+
+Deploy the application to a platform that supports Next.js and configure the production environment variables listed above. Point `DATABASE_URL` to a reachable PostgreSQL database, set the GitHub OAuth callback URL to the deployed domain, and use production credentials for MapTiler and UploadThing. Apply database migrations before serving traffic:
+
+```bash
+pnpm exec prisma migrate deploy
+pnpm build
+pnpm start
+```
+
+## Credits
+
+https://www.youtube.com/watch?v=j7Qu65rUcsY
